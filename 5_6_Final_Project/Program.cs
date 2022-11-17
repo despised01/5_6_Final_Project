@@ -5,17 +5,15 @@ namespace _5_6_Final_Project
     class Program
     {
 
-        static (string FirstName, string LastName, int Age, bool HasPet, int CountPet, string[] NamePet, int CountColors, string[] FavColors) UserInfo()
+        static (string FirstName, string LastName, int Age) UserInfoPrimary()
         {
-            (string FirstName, string LastName, int Age, bool HasPet, int CountPet, string[] NamePet, int CountColors, string[] FavColors) User;
-
-            Console.WriteLine("Здравствуйте! Давайте уточним ваши данные.");
+            (string FirstName, string LastName, int Age) UserPrimary;
 
             Console.WriteLine("Напишите ваше имя:");
-            User.FirstName = Console.ReadLine();
+            UserPrimary.FirstName = Console.ReadLine();
 
             Console.WriteLine("Напишите вашу фамилию:");
-            User.LastName = Console.ReadLine();
+            UserPrimary.LastName = Console.ReadLine();
 
             string age;
             int intage;
@@ -26,43 +24,50 @@ namespace _5_6_Final_Project
             }
             while (CheckNum(age, out intage));
 
-            User.Age = intage;
+            UserPrimary.Age = intage;
+
+            return UserPrimary;
+        }
+
+        static (bool HasPet, int CountPet, string[] NamePet, int CountColors, string[] FavColors) UserInfoSecondary()
+        {
+            (bool HasPet, int CountPet, string[] NamePet, int CountColors, string[] FavColors) UserSecondary;
 
             Console.WriteLine("Есть ли у вас питомцы? Ответ да или нет");
             var Answer = Console.ReadLine();
 
             if (Answer == "да")
-                User.HasPet = true;
+                UserSecondary.HasPet = true;
             else
-                User.HasPet = false;
+                UserSecondary.HasPet = false;
 
-            if(User.HasPet == true)
+            if (UserSecondary.HasPet == true)
             {
-                Console.WriteLine("Сколько у вас питомцев? Введите пожалуйста ответ цифрами.");
-                User.CountPet = int.Parse(Console.ReadLine());
-                int num = User.CountPet;
+                Console.WriteLine("Сколько у вас питомцев? Введите пожалуйста ответ цифрами.");              
+            }
+            UserSecondary.CountPet = int.Parse(Console.ReadLine());
+            int num = UserSecondary.CountPet;
 
-                User.NamePet = new string[num];
-                for (int i = 0; i < num; i++)
-                {
-                    Console.WriteLine("\nВведите кличку {0} питомца:", i + 1);
-                    User.NamePet[i] = Console.ReadLine();
-                }
-
+            UserSecondary.NamePet = new string[num];
+            for (int i = 0; i < num; i++)
+            {
+                Console.WriteLine("\n Введите имя вашего {0} питомца:", i + 1);
+                UserSecondary.NamePet[i] = Console.ReadLine();
             }
 
             Console.WriteLine("Сколько у вас любимых цветов? Введите пожалуйста ответ цифрами.");
-            User.CountColors = int.Parse(Console.ReadLine());
-            int colornum = User.CountColors;
+            UserSecondary.CountColors = int.Parse(Console.ReadLine());
+            int colornum = UserSecondary.CountColors;
 
-            User.FavColors = new string[colornum];
+            UserSecondary.FavColors = new string[colornum];
             for (int j = 0; j < colornum; j++)
             {
                 Console.WriteLine("\nВведите ваш любимый цвет {0}", j + 1);
-                User.FavColors[j] = Console.ReadLine();
+                UserSecondary.FavColors[j] = Console.ReadLine();
             }
+            
 
-            return User;
+            return UserSecondary;
         }
 
         static bool CheckNum(string number, out int corrnumber)
@@ -80,6 +85,7 @@ namespace _5_6_Final_Project
                 return true;
             }
         }
+
 
        
 
