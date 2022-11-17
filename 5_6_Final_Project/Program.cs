@@ -51,7 +51,7 @@ namespace _5_6_Final_Project
             UserSecondary.NamePet = new string[num];
             for (int i = 0; i < num; i++)
             {
-                Console.WriteLine("\n Введите имя вашего {0} питомца:", i + 1);
+                Console.WriteLine("\nВведите имя вашего {0} питомца:", i + 1);
                 UserSecondary.NamePet[i] = Console.ReadLine();
             }
 
@@ -84,6 +84,26 @@ namespace _5_6_Final_Project
                 corrnumber = 0;
                 return true;
             }
+        }
+
+        static void Main(string[] args)
+        {
+            var (FirstName, LastName, Age) = UserInfoPrimary();
+            var (HasPet, CountPet, NamePet, CountColors, FavColors) = UserInfoSecondary();
+
+            Console.WriteLine("Ваше имя и фамилия: {0} {1}", FirstName, LastName);
+            Console.WriteLine("Ваш возраст: {0}", Age);
+
+            if (HasPet == true)
+            {
+                Console.WriteLine("Количество ваших питомцев: {0}", CountPet);
+                foreach(string Names in NamePet)
+                    Console.WriteLine($"Имя вашего питомца: {Names}");
+            }
+
+            Console.WriteLine("Количество ваших любимых цветов: {0}", CountColors);
+            foreach(string Colors in FavColors)
+                Console.WriteLine($"Ваш любимый цвет: {Colors}");
         }
 
 
